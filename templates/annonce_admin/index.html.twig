@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonce index{% endblock %}
+
+{% block body %}
+    <h1>Annonce index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Lieu</th>
+                <th>Description</th>
+                <th>Salaire</th>
+                <th>Duree</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for annonce in annonces %}
+            <tr>
+                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.titre }}</td>
+                <td>{{ annonce.lieu }}</td>
+                <td>{{ annonce.description }}</td>
+                <td>{{ annonce.salaire }}</td>
+                <td>{{ annonce.duree }}</td>
+                <td>
+                    <a href="{{ path('app_annonce_admin_show', {'id': annonce.id}) }}">show</a>
+                    <a href="{{ path('app_annonce_admin_edit', {'id': annonce.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_annonce_admin_new') }}">Create new</a>
+    <div class="col d-flex justify-content-start">
+        <a href="{{ path('app_menu_admin') }}" class="btn btn-dark btn-sm">Retour menu</a>
+    </div>
+{% endblock %}

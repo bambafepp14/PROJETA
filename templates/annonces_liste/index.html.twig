@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste annonces{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('notification') %}
+                <div class="alert alert-info alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+    {% endfor %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center my-5">{{ titrePage }}</h1>
+            </div>
+        </div>
+
+        <div class="row">
+
+            {% if annonces is empty %}
+            <div class="d-flex justify-content-center">
+                <p>Aucune annonces publiées pour le moment, revenez plus tard :)</p>
+            </div>
+
+            {% else %}
+                {# ma boucle sur mes annonces #}
+                {% for annonce in annonces %}
+
+                {# ma card pour affichage annonce #}
+                <div class="col-3 col-md-4 col-sm-12 d-flex justify-content-center">
+                    <div class="card mb-4" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{ annonce.titre }}</h5>
+                            <p class="card-text text-justify">{{ annonce.description|length > 30 ? annonce.description|slice(0, 30) ~ '...' : annonce.description  }}</p>
+
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-4">
+                                    <a href="{{ path('app_annonces_details', {id:  annonce.id}) }}" class="btn btn-primary">Détail</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                {# la fin de ma boucle #}
+                {% endfor %}
+                {# la fin de mon if #}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

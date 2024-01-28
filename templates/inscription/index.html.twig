@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InscriptionController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <p class="display-6 text-center mb-5 mt-4">Vous êtes ?</p>
+        </div>
+        <div class="row">
+            <div class="col-3 mx-auto d-grid d-block">
+                <a href="{{ path('app_inscription_candidat') }}" type="button" class="btn btn-warning my-3">Un candidat</a>
+                <a href="{{ path('app_inscription_recruteur') }}" type="button" class="btn btn-warning my-3">Un recruteur</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

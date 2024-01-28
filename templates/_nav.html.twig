@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between px-5 mb-5">
+    <div>
+        <ul class="list-inline">
+            <li class="list-inline-item">
+                <a class="navbar-brand" href="#">Jobi.fr</a>
+            </li>
+            <li class="list-inline-item">
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    Bonjour, vous êtes connecté en tant que {{ app.user.userIdentifier }}
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="mr-3" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_annonces_liste') }}">Liste des annonces</a>
+            </li>
+
+            {% if is_granted('IS_ANONYMOUS') %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_register') }}">S'inscrire</a>
+            </li>
+            {% endif %}
+
+            {% if is_granted('ROLE_CANDIDAT') %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_profil_candidat') }}">Votre profil candidat</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Postuler</a>
+            </li>
+            {%endif%}
+
+            {% if is_granted('ROLE_RECRUTEUR') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_annonces_publication') }}">Publier une annonce</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_profil_recruteur') }}">Votre profil recruteur</a>
+                </li>
+            {%endif%}
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_menu_admin') }}">Menu Admin</a>
+                </li>
+            {%endif%}
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+            {%else%}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                </li>
+            {%endif%}
+        </ul>
+    </div>
+</nav>

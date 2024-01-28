@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="display-6 text-center my-5">Gestion des utilisateurs</h1>
+
+        <table class="table table-primary">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Entreprise</th>
+                <th>Adresse entreprise</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.entreprise }}</td>
+                    <td>{{ user.adresseEntreprise }}</td>
+                    <td class="d-flex justify-content-center">
+                        <a href="{{ path('app_user_admin_show', {'id': user.id}) }}" class="btn btn-primary btn-sm">Visualiser</a>
+                        <a href="{{ path('app_user_admin_edit', {'id': user.id}) }}" class="btn btn-warning btn-sm mx-2">Modifier</a>
+                        <form method="post" action="{{ path('app_user_admin_delete', {'id': user.id}) }}" onsubmit="return confirm('êtes vous sûr de vouloir supprimer cet utilisateur ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="row">
+            {#            Bouton retour #}
+            <div class="col d-flex justify-content-end">
+                <a href="{{ path('app_menu_admin') }}" class="btn btn-dark btn-sm">Retour menu</a>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

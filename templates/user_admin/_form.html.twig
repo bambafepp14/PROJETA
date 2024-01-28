@@ -1,0 +1,40 @@
+<div class="container d-flex justify-content-center">
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col">
+            {{ form_label(form.nom, 'Nom', {'attr' : {'class': 'form-label'}}) }}
+            {{ form_widget(form.nom, {'attr' : {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_label(form.prenom, 'Prénom', {'attr' : {'class': 'form-label'}}) }}
+            {{ form_widget(form.prenom, {'attr' : {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_label(form.email, 'Email', {'attr' : {'class': 'form-label'}}) }}
+            {{ form_widget(form.email, {'attr' : {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_label(form.entreprise, 'Nom entreprise', {'attr' : {'class': 'form-label'}}) }}
+            {{ form_widget(form.entreprise, {'attr' : {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_label(form.adresse_entreprise, 'Adresse entreprise', {'attr' : {'class': 'form-label'}}) }}
+            {{ form_widget(form.adresse_entreprise, {'attr' : {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="row d-flex justify-content-end">
+    <div class="col-2">
+        <button class="btn btn-warning">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+</div>
+{{ form_end(form) }}

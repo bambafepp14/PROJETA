@@ -104,6 +104,18 @@
     "phpstan/phpdoc-parser": {
         "version": "1.2.0"
     },
+    "plaisio/babel": {
+        "version": "2.0.1"
+    },
+    "plaisio/babel-core": {
+        "version": "1.8.0"
+    },
+    "plaisio/helper-html": {
+        "version": "4.0.0"
+    },
+    "plaisio/kernel": {
+        "version": "3.1.1"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -130,6 +142,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "setbased/exception": {
+        "version": "2.2.0"
     },
     "symfony/amqp-messenger": {
         "version": "v5.4.5"
@@ -380,7 +395,7 @@
         "version": "5.4",
         "recipe": {
             "repo": "github.com/symfony/recipes",
-            "branch": "master",
+            "branch": "main",
             "version": "5.3",
             "ref": "98f1f2b0d635908c2b40f3675da2d23b1a069d30"
         },
@@ -392,13 +407,13 @@
         "version": "v5.4.5"
     },
     "symfony/security-csrf": {
-        "version": "v5.4.3"
+        "version": "v5.4.27"
     },
     "symfony/security-guard": {
-        "version": "v5.4.3"
+        "version": "v5.4.27"
     },
     "symfony/security-http": {
-        "version": "v5.4.5"
+        "version": "v5.4.28"
     },
     "symfony/serializer": {
         "version": "v5.4.6"
@@ -511,6 +526,9 @@
     },
     "symfony/yaml": {
         "version": "v5.4.3"
+    },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.14.0"
     },
     "twig/extra-bundle": {
         "version": "v3.3.8"

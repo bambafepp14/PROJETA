@@ -10,3 +10,13 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+/*
+$('#profil_idRole').on('change', function(){
+    if($('#profil_idRole').val() == '2'){
+        $('#profil_entreprise').parent().show();
+        $('#profil_adresse_entreprise').parent().show();
+    }
+    $('#profil_entreprise').parent().hide();
+    $('#profil_adresse_entreprise').parent().hide();
+});*/

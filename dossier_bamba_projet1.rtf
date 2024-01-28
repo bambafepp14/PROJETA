@@ -1,0 +1,310 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;\f2\fmodern\fcharset0 Courier-Oblique;
+\f3\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red153\green168\blue186;\red26\green28\blue28;\red191\green100\blue38;
+\red88\green118\blue71;\red153\green168\blue186;\red26\green28\blue28;\red88\green118\blue71;\red32\green32\blue32;
+\red225\green179\blue88;\red172\green172\blue172;\red149\green184\blue79;\red191\green100\blue38;\red133\green96\blue154;
+\red133\green96\blue154;\red254\green187\blue91;\red86\green132\blue173;\red109\green109\blue109;\red86\green132\blue173;
+\red81\green136\blue67;\red32\green32\blue32;\red0\green0\blue0;\red24\green30\blue42;\red255\green255\blue255;
+\red225\green179\blue88;\red172\green172\blue172;\red149\green184\blue79;}
+{\*\expandedcolortbl;;\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c10196\c10980\c10980;\csgenericrgb\c74902\c39216\c14902;
+\csgenericrgb\c34510\c46275\c27843;\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c10196\c10980\c10980;\csgenericrgb\c34510\c46275\c27843;\csgenericrgb\c12549\c12549\c12549;
+\csgenericrgb\c88235\c70196\c34510;\csgenericrgb\c67451\c67451\c67451;\csgenericrgb\c58431\c72157\c30980;\csgenericrgb\c74902\c39216\c14902;\csgenericrgb\c52157\c37647\c60392;
+\csgenericrgb\c52157\c37647\c60392;\csgenericrgb\c99608\c73333\c35686;\csgenericrgb\c33725\c51765\c67843;\csgenericrgb\c42745\c42745\c42745;\csgenericrgb\c33725\c51765\c67843;
+\csgenericrgb\c31765\c53333\c26275;\csgenericrgb\c12549\c12549\c12549;\cssrgb\c0\c0\c0;\cssrgb\c12157\c16078\c21569;\cssrgb\c100000\c100000\c100000;
+\csgenericrgb\c88235\c70196\c34510;\csgenericrgb\c67451\c67451\c67451;\csgenericrgb\c58431\c72157\c30980;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww37900\viewh19680\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 1. NAVBAR\
+La navbar est pr\'e9sente sur chacune de nos pages donc nous avons choisi de la mettre dans un fichier php et d\'92inclure ce fichier dans notre layout.\
+ Le but \'e9tait de cr\'e9er une navbar maintenable et modifiable \'e0 un seul endroit au lieu de la dupliquer dans chacune de nos pages.\
+\
+Nous l\'92avons inclus dans notre layout base.html.twig qui sert de gabarit \'e0 chacune de nos pages. 
+\f1\fs26 \cf2 \cb3 \{% \cf4 include\cf2 (\cf5 '_nav.html.twig'\cf2 ) %\}\
+
+\f0\fs24 \cf0 \cb1 \
+L\'92affichage de certains \'e9l\'e9ments de la navbar est conditionn\'e9 par le r\'f4le ou le statut de l\'92utilisateur.\
+\
+L\'92utilisateur peut avoir le statut d\'e9connect\'e9 et du coup la navbar affichera un lien pour se connecter. Dans le cas contraire un lien pour se d\'e9connecter sera affich\'e9.\
+Twig permet de savoir si l\'92utilisateur est connect\'e9 gr\'e2ce au test suivant 
+\f1\fs26 \cf6 \cb7 is_granted(\cf8 \cb7 'IS_AUTHENTICATED_FULLY'\cf6 \cb7 )
+\f0\fs24 \cf0 \cb1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs26 \cf2 \cb3 \{% \cf4 if \cf2 is_granted(\cf5 'IS_AUTHENTICATED_FULLY'\cf2 ) %\}\cb9 \
+    \cf10 <a \cf11 class\cf12 ="nav-link" \cf11 href\cf12 ="\cf2 \cb3 \{\{ path(\cf5 'app_logout'\cf2 ) \}\}\cf12 \cb9 "\cf10 >\cf2 D\'e9connexion\cf10 </a>\
+\cf2 \cb3 \{%\cf4 else\cf2 %\}\cb9 \
+    \cf10 <li \cf11 class\cf12 ="nav-item"\cf10 >\
+        <a \cf11 class\cf12 ="nav-link" \cf11 href\cf12 ="\cf2 \cb3 \{\{ path(\cf5 'app_login'\cf2 ) \}\}\cf12 \cb9 "\cf10 >\cf2 Connexion\cf10 </a>\
+    </li>\
+\cf2 \cb3 \{%\cf4 endif\cf2 %\}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+Un autre exemple, \
+\
+Un utilisateur qui serait connect\'e9 avec le r\'f4le d\'92aministrateur du site pourra acc\'e9der au menu admin 
+\f1\fs26 \cf13 \cb7  \cf6 is_granted(\cf8 \cb7 'ROLE_ADMIN'\cf6 \cb7 ) 
+\f0\fs24 \cf0 \cb1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs26 \cf2 \cb3 \{% \cf4 if \cf2 is_granted(\cf5 'ROLE_ADMIN'\cf2 ) %\}\cb9 \
+    \cf10 <li \cf11 class\cf12 ="nav-item"\cf10 >\
+        <a \cf11 class\cf12 ="nav-link" \cf11 href\cf12 ="\cf2 \cb3 \{\{ path(\cf5 'app_menu_admin'\cf2 ) \}\}\cf12 \cb9 "\cf10 >\cf2 Menu Admin\cf10 </a>\
+    </li>\
+\cf2 \cb3 \{%\cf4 endif\cf2 %\}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+\
+2. PAGE ACCUEIL AVEC LES ANNONCES\
+\
+Pour cr\'e9er la page annonce je dois cr\'e9er un contr\'f4leur et une vue \
+Je cr\'e9e le contr\'f4leur qui s\'92appelle AnnoncesControlleur.php et la vue Annonces/index.html.twig\
+\
+Dans mon contr\'f4leur je r\'e9cup\'e8re l\'92int\'e9gralit\'e9 de mes annonces qui sont stock\'e9s dans la table annonce de ma base de donn\'e9es.\
+\
+Pour rappel ma table annonces a \'e9t\'e9 cr\'e9\'e9 lorsque j\'92ai cr\'e9\'e9 mon entit\'e9 annonces via php bin/consle make:entity  puisen faisant la migration via doctrine (php bin/console make:migration + php bin/console doctrine:migrations:migrate)\
+Le repository a \'e9t\'e9 cr\'e9e en m\'eame temps que mon entit\'e9 annonce au d\'e9but du projet lorsque j\'92ai cr\'e9e mon entit\'e9 annonces.\
+\
+Je cr\'e9e une variable $annonces et je me sers de la m\'e9thode findAll du repository annonce\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs26 \cf14 \cb7 $annonces \cf6 = \cf14 $annonceRepository\cf6 ->\cf13 findAll\cf6 ()\cf13 ;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+Ensuite j\'92envoie mes annonces \'e0 ma vue Annonce/index.html.twig sous le nom \'ab\'a0annonces\'a0\'bb\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs26 \cf4 \cb3 return \cf15 $this\cf2 ->\cf16 render\cf2 (\cf5 'annonces_liste/index.html.twig'\cf4 , \cf2 [\
+    \cf5 'annonces' \cf2 => \cf15 $annonces\cf4 ,\
+    \cf5 'titrePage' \cf2 => \cf5 'Liste des annonces'\
+\cf2 ])\cf4 ;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+\
+\
+Partie affichage dans la vue \
+\
+Je vais afficher mes annonces sous formes de card avec l\'92aide de bootstrap\
+\
+Je vais parcourir mon tableau d\'92annonces et les afficher une par une \'e0 l\'92aide de la boucle for de Twig.\
+\
+Afin d\'92afficher chaque propri\'e9t\'e9 de mon objet annonce j\'92utilise les doubles accolades de Twig 
+\f1\fs26 \cf6 \cb7 \{\{ annonce.titre \}\}
+\f0\fs24 \cf0 \cb1  \
+\
+\
+Une particularit\'e9, chaque annonce est affich\'e9 dans une card bootstrap, pour maintenir une largeur \'e9gale entre toute les card nous n\'92affichons que les 30 premiers caract\'e8res de la description de l\'92annonce.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs26 \cf6 \cb7 \{\{ annonce.description|length > \cf17 \cb7 30 \cf6 \cb7 ? annonce.description|slice(\cf17 \cb7 0\cf6 \cb7 , \cf17 \cb7 30\cf6 \cb7 ) ~ \cf8 \cb7 '...' \cf6 \cb7 : annonce.description  \}\}
+\f0\fs24 \cf0 \cb1 \
+\
+Cette ligne conditionne l\'92affichage de la description, si celle ci est sup\'e9rieure \'e0 30 caract\'e8res alors nous n\'92affichons que les 30 premiers caract\'e8res et nous concat\'e9nons \'ab\'a0\'85\'a0\'bb pour indiquer \'e0 l\'92utilisateur que la description est plus longue. IL pourra acc\'e9der \'e0 toutes l\'92annonce en cliquant sur la card et en affichant le d\'e9tail de l\'92annonce. \
+Si la description est plus courte que 30 caract\'e8res alors nous affichons l\'92int\'e9gralit\'e9 de celle-ci.\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs26 \cf18 \cb3 # ma boucle sur mes annonces #\}\cb9 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf2 \cb3 \{% \cf4 for \cf2 annonce \cf4 in \cf2 annonces %\}\cb9 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf18 \cb3 \{# ma card pour affichage annonce #\}\cb9 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf10 <div \cf11 class\cf12 ="col-3 col-md-4 col-sm-12 d-flex justify-content-center"\cf10 >\
+    <div \cf11 class\cf12 ="card mb-4" \cf11 style\cf12 ="\cf11 width\cf2 : \cf19 18\cf12 rem\cf4 ;\cf12 "\cf10 >\
+        <div \cf11 class\cf12 ="card-body"\cf10 >\
+            <h5 \cf11 class\cf12 ="card-title text-center"\cf10 >\cf2 \cb3 \{\{ annonce.titre \}\}\cf10 \cb9 </h5>\
+            <p \cf11 class\cf12 ="card-text text-justify"\cf10 >\cf2 \cb3 \{\{ annonce.description|length > \cf19 30 \cf2 ? annonce.description|slice(\cf19 0\cf2 , \cf19 30\cf2 ) ~ \cf5 '...' \cf2 : annonce.description  \}\}\cf10 \cb9 </p>\
+\
+            <div \cf11 class\cf12 ="row d-flex justify-content-center"\cf10 >\
+                <div \cf11 class\cf12 ="col-4"\cf10 >\
+                    <a \cf11 href\cf12 ="\cf2 \cb3 \{\{ path(\cf5 'app_annonces_details'\cf2 , \{id:  annonce.id\}) \}\}\cf12 \cb9 " \cf11 class\cf12 ="btn btn-primary"\cf10 >\cf2 D\'e9tail\cf10 </a>\
+                </div>\
+            </div>\
+\
+        </div>\
+    </div>\
+</div>\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf18 \cb3 \{# la fin de ma boucle #\}\cb9 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf2 \cb3 \{% \cf4 endfor \cf2 %\}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+\
+Conditionnement de l\'92affichage en fonction du nombre d\'92annonces\
+\
+Dans le cas d\'92un tableau d\'92annonce vide, nous afficherons un message indiquant \'e0 l\'92utilisateur qu\'92il n y a pas d\'92annonces pour le moment. Sinon nous afficherons les annonces\
+\
+Ce message est affich\'e9 en testant la taille du tableau d\'92annonces gr\'e2ce \'e0 la fonction empty de Twig\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs26 \cf2 \cb3 \{% \cf4 if \cf2 annonces \cf4 is \cf2 empty %\}\cb9 \
+\cf10 <div \cf11 class\cf12 ="d-flex justify-content-center"\cf10 >\
+    <p>\cf2 Aucune annonces publi\'e9es pour le moment, revenez plus tard :)\cf10 </p>\
+</div>\
+\
+\cf2 \cb3 \{% \cf4 else \cf2 %\}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+\
+\
+\
+3. AUTORISATION ACCES PAGE\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f2\i\fs26 \cf20 \cb21 # Easy way to control access for large sections of your site\
+# Note: Only the *first* access control that matches will be used\
+
+\f1\i0 \cf13 access_control\cf6 :\
+    - \{ \cf13 path\cf6 : ^/admin, \cf13 roles\cf6 : ROLE_ADMIN \}\
+    - \{ \cf13 path\cf6 : ^/register, \cf13 roles\cf6 : [ROLE_CANDIDAT, ROLE_RECRUTEUR] \}\
+    - \{ \cf13 path\cf6 : ^/profil, \cf13 roles\cf6 : [ROLE_CANDIDAT, ROLE_RECRUTEUR] \}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+Je dois donner l\'92acc\'e8s \'e0 la partie administration du site uniquement \'e0 un utilisateur qui poss\'e8de un r\'f4le Admin \
+Seulement les candidat et les recruteurs doivent pouvoir remplir leur profil.\
+\
+Pour autoriser certain utilisateurs et pas d\'92autre a acc\'e9der \'e0 certaines pages je configure tout \'e7a dans le fichier security.yaml \'e0 la rubrique access_control.\
+\
+4. LOGIN \
+\
+\
+\pard\pardeftab720\sl504\partightenfactor0
+
+\f3\fs28 \AppleTypeServices\AppleTypeServicesF65539 \cf22 \cb23 \expnd0\expndtw0\kerning0
+c\cb24 omposer require symfony/security-bundle\cb23 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \AppleTypeServices \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+Pour cr\'e9er l\'92authentification sur mon site j\'92ai besoin de faire 3 choses \
+\
+- Cr\'e9er un contr\'f4leur login\
+- Cr\'e9er la vue twig que mon utilisateur verra et permettant d\'92afficher mon \'e9cran de login \
+- Param\'e9trer le login gr\'e2ce au fichier security.yaml\
+\
+\
+\
+\
+Cr\'e9ation du fichier security.yaml qui genre toute la partie authentification sur le site et droit d\'92acc\'e8s aux pages.\
+\
+Param\'e9trage d\'92un provider, qui sera bas\'e9 sur notre entit\'e9 User, et la fa\'e7on de s\'92authentifier sera sur l\'92email de l\'92utilisateur\
+\
+On indique au firewall de s\'92appuyer sur ce provider qui s\'92appelle app_user_provider\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs26 \cf13 \cb21 app_user_provider\cf6 :\
+    \cf13 entity\cf6 :\
+        \cf13 class\cf6 : App\\Entity\\User\
+        \cf13 property\cf6 : email\
+\
+\
+\cf13 main\cf6 :\
+    \cf13 lazy\cf6 : true\
+    \cf13 provider\cf6 : app_user_provider\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 -\
+\
+Cr\'e9ation automatique du formulaire de login en cr\'e9ant un contr\'f4leur login \
+\
+\pard\pardeftab720\sl504\partightenfactor0
+
+\f3\fs28 \AppleTypeServices\AppleTypeServicesF65539 \cf24 \cb23 \expnd0\expndtw0\kerning0
+php bin/console make:controller Login\cf22 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \AppleTypeServices \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\
+Je reprends le code de la doc de Symfony que je met dans mon contr\'f4leur login \
+\
+\
+Dans le security.yaml \
+\
+Je viens indiquer la route qui permet d\'92afficher la page de login \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs26 \cf13 \cb21 form_login\cf6 :\
+    
+\f2\i \cf20 # "app_login" is the name of the route created previously\
+    
+\f1\i0 \cf13 login_path\cf6 : app_login\
+    \cf13 check_path\cf6 : app_login\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 -\
+\
+\
+Je viens ensuite cr\'e9er mon formulaire dans la vue twig login/index.html.twig\
+\
+J\'92ai dans ce formulaire deux champs, un pour l\'92email et un pour le mot de passe et un bouton permettant de soumettre ce formulaire\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs26 \cf6 \cb21 \
+
+\f1 \cb7 \{% \cf13 extends \cf8 'base.html.twig' \cf6 %\}\cb21 \
+\
+\cb7 \{% \cf13 block \cf6 body %\}\cb21 \
+    \cb7 \{% \cf13 if \cf6 error %\}\cb21 \
+        \cf25 <div>\cf6 \cb7 \{\{ error.messageKey|trans(error.messageData, \cf8 'security'\cf6 ) \}\}\cf25 \cb21 </div>\
+    \cf6 \cb7 \{% \cf13 endif \cf6 %\}\cb21 \
+\
+    \cf25 <form \cf26 action\cf27 ="\cf6 \cb7 \{\{ path(\cf8 'app_login'\cf6 ) \}\}\cf27 \cb21 " \cf26 method\cf27 ="post"\cf25 >\
+        <label \cf26 for\cf27 ="username"\cf25 >\cf6 Email:\cf25 </label>\
+        <input \cf26 type\cf27 ="text" \cf26 id\cf27 ="username" \cf26 name\cf27 ="_username" \cf26 value\cf27 ="\cf6 \cb7 \{\{ last_username \}\}\cf27 \cb21 "\cf25 >\
+\
+        <label \cf26 for\cf27 ="password"\cf25 >\cf6 Password:\cf25 </label>\
+        <input \cf26 type\cf27 ="password" \cf26 id\cf27 ="password" \cf26 name\cf27 ="_password"\cf25 >\
+\
+        <input \cf26 type\cf27 ="hidden" \cf26 name\cf27 ="_target_path" \cf26 value\cf27 ="/"\cf25 >\
+\
+        <button \cf26 type\cf27 ="submit"\cf25 >\cf6 login\cf25 </button>\
+    </form>\
+\cf6 \cb7 \{% \cf13 endblock \cf6 %\}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+\
+\
+La partie login est termin\'e9 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

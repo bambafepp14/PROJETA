@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu Admin{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+            <p class="display-6 text-center mb-5 mt-4">Menu administrateur</p>
+    </div>
+    <div class="row">
+        <div class="col-3 mx-auto d-grid d-block">
+            <a href="{{ path('app_user_admin_index') }}" type="button" class="btn btn-warning my-3">Gestion de tous les utilisateurs</a>
+            <a href="{{ path('app_consultant') }}" type="button" class="btn btn-warning my-3">Création d'un consultant</a>
+            <a href="{{ path('app_annonce_admin_index') }}" type="button" class="btn btn-warning my-3">Gestion des annonces</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
